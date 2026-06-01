@@ -1,0 +1,9 @@
+customtkinter: Utilizado para criar toda a Interface Gráfica (GUI) moderna do aplicativo. Ele foi o responsável por gerar a janela, os menus de seleção (Dropdowns), a caixa de entrada de texto, o título e os botões customizados (incluindo o botão "Limpar" sem fundo e sublinhado).
+
+requests: Utilizado para fazer a ponte de comunicação entre o seu programa e a internet. Ele envia uma requisição para a API externa de moedas, baixa os dados em tempo real e traz os valores atualizados para dentro do script.
+
+tkinter (nativo): Utilizado especificamente para solucionar a incompatibilidade de ícones do Windows. Por ser uma biblioteca nativa do Python, usamos o seu recurso de gerenciamento de imagens para carregar o arquivo .ico na barra de título sem depender de instalações extras como o Pillow.
+
+os e sys (nativos): Utilizados na criação da função caminho_recurso. Eles servem para analisar os caminhos de pastas do sistema e mapear onde o arquivo de ícone foi guardado temporariamente pelo computador.
+
+PyInstaller: A ferramenta de empacotamento utilizada no terminal para transformar o script .py em um aplicativo executável (.exe) independente. Foi ele quem juntou o código, as bibliotecas e o ícone em um único arquivo portátil que roda em outros computadores sem precisar do Python instalado.
