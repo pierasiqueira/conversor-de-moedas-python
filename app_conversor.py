@@ -127,7 +127,7 @@ botao.pack(pady=10)
 
 #Texto onde vai aparecer o resultado
 texto_resultado = ctk.CTkLabel(janela, text="", font=("Arial", 16, "bold"))
-texto_resultado.pack(pady=10)
+texto_resultado.pack(pady=5)
 
 #[NOVO] Criação e posicionamento do botação limpar
 botao_limpar = ctk.CTkButton(
