@@ -45,7 +45,7 @@ def acao_botao_converter(event=None):
     direcao_selecionada = menu_direcao.get() # Pega a direção escolhida
 
     #Mapeia o nome do menu para código API
-    codigos = {"Dólar (USD)": "USD", "Dólar Tether (USDT)": "USDT", "Euro (EUR)": "EUR", "BitCoin (BTC)": "BTC"}
+    codigos = {"Dólar (USD)": "USD", "Euro (EUR)": "EUR", "Bitcoin (BTC)": "BTC"}
     codigo_moeda = codigos[moeda_selecionada]
 
     #Busca a cotação atual
@@ -64,10 +64,15 @@ def acao_botao_converter(event=None):
             #Opção de Real para Moeda Estrangeira
             else:
                 total = valor_inserido / cotacao
-                simbolos = {"USD": "$", "USDT": "$", "EUR": "€", "BTC": "₿"} #Define o símbolo correto para mostrar na tela
+                simbolos = {"USD": "$", "EUR": "€", "BTC": "₿"} #Define o símbolo correto para mostrar na tela
                 simbolo = simbolos[codigo_moeda]
-                texto_final = f"Cotação: R$ {cotacao:.2f}\n\nTotal: {simbolo} {total:.2f}"
-            
+
+                # [CORRIGIDO] Se for Bitcoin, mostra até 6 casas decimais. Se não, mostra 2.
+                if codigo_moeda == "BTC":
+                    texto_final = f"Cotação: R$ {cotacao:.2f}\nTotal: {simbolo} {total:.6f}"
+                else:
+                    texto_final = f"Cotação: R$ {cotacao:.2f}\nTotal: {simbolo} {total:.2f}"
+
             texto_resultado.configure(text=texto_final, text_color="green")
             
         except ValueError:
@@ -108,7 +113,7 @@ menu_direcao.pack(pady=5)
 #Menu para escolher a moeda estrangeira
 rotulo_moeda = ctk.CTkLabel(janela, text="Escolha a moeda estrangeira:", font=("Arial", 12))
 rotulo_moeda.pack(pady=2)
-menu_moeda = ctk.CTkOptionMenu(janela, values=["Dólar (USD)", "Dólar Tether (USDT)", "Euro (EUR)", "Bitcoin (BTC)"])
+menu_moeda = ctk.CTkOptionMenu(janela, values=["Dólar (USD)", "Euro (EUR)", "Bitcoin (BTC)"])
 menu_moeda.pack(pady=10)
 
 #Campo para digitar o valor (Input)
